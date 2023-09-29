@@ -1,0 +1,11 @@
+Admin
+user : admin@gmail.com
+pass : 12345678
+
+Petugas
+user : petugas@gmail.com
+pass : 12345678
+
+Masyarakat
+user : user@gmail.com
+pass : 12345678
