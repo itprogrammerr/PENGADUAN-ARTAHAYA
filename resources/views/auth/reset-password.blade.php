@@ -2,7 +2,9 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('assets/img/logo-pengaduan.png') }}" alt=""
+                    class="transform transition hover:scale-125 duration-300 ease-in-out"
+                    style="max-width: 40%; height:auto; margin: 0 auto;" />
             </a>
         </x-slot>
 
@@ -19,7 +21,8 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)"
+                    required autofocus />
             </div>
 
             <!-- Password -->
@@ -33,9 +36,8 @@
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required />
             </div>
 
             <div class="flex items-center justify-end mt-4">

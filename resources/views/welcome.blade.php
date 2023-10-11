@@ -13,7 +13,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>PENGADUAN NASABAH BANK ARTHAYA</title>
+    <title>ARTHAYA SUPPORT</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" defer>
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}">

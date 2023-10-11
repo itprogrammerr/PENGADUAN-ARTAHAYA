@@ -1,3 +1,11 @@
-<footer class="mt-3 p-3 text-center bg-white text-sm text-gray-600 dark:text-gray-400 dark:bg-gray-800">
-    © 2023 PENGADUAN NASABAH BANK ARTHAYA
+<footer>
+    <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8 text-center">
+        <p class="text-xs text-gray-500 ">
+            &copy; <span id="currentYear"></span>. PT BPR ARTHAYA INDOTAMA PUSAKA. All rights reserved.
+        </p>
+    </div>
 </footer>
+<script>
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
+</script>

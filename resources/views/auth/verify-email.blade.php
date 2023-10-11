@@ -2,7 +2,9 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('assets/img/logo-pengaduan.png') }}" alt=""
+                    class="transform transition hover:scale-125 duration-300 ease-in-out"
+                    style="max-width: 40%; height:auto; margin: 0 auto;" />
             </a>
         </x-slot>
 
