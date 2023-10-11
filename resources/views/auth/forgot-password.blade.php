@@ -2,7 +2,6 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                {{-- <img class="w-20 h-20" src="{{ asset('img/logo.svg')}} " alt="Logo"> --}}
                 <img src="{{ asset('assets/img/logo-pengaduan.png') }}" alt=""
                     class="transform transition hover:scale-125 duration-300 ease-in-out"
                     style="max-width: 40%; height:auto; margin: 0 auto;" />

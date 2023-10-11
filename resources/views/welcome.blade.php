@@ -115,7 +115,7 @@
         </div>
     </nav>
 
-    <div class="pt-10 px-16 bg-purple-200">
+    <div class="pt-10 px-16 bg-purple-200 h-screen">
         <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <!--Left Col-->
             <div
