@@ -45,7 +45,7 @@ Route::prefix('user')
     ->group(function() {
 				Route::get('/', 'MasyarakatController@index')->name('masyarakat-dashboard');
                 Route::resource('pengaduan', 'MasyarakatController');
-                Route::get('pengaduan', 'MasyarakatController@lihat');
+                Route::get('pengaduan', 'MasyarakatController@lihat')->name('show-pengaduan');
 });
 
 

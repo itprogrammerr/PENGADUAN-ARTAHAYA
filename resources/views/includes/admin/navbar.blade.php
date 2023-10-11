@@ -1,8 +1,6 @@
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-    <div class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+    <div class="container flex items-center justify-start h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <!-- Mobile hamburger -->
-        <img src="{{ asset('assets/img/logo-pengaduan.png') }}" class="img-fluid logo"
-            style="max-width: 20%; height: auto;">
         <button class=" p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
             @click="toggleSideMenu" aria-label="Menu">
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -11,6 +9,14 @@
                     clip-rule="evenodd"></path>
             </svg>
         </button>
+        <div class="flex flex-col justify-center items-center">
+            <img src="{{ asset('assets/img/favicon.png') }}" class="text-center img-fluid logo mx-auto"
+                style="max-width: 15%; height: auto;" alt="Logo">
+            <p
+                class="text-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                Arthaya Support
+            </p>
+        </div>
 
         <ul class="flex items-center flex-shrink-2 space-x-6">
             <!-- Theme toggler -->
