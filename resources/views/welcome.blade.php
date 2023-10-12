@@ -133,9 +133,8 @@
             </div>
 
             <!--Right Col-->
-            <div
-                class="w-full md:w-2/5 justify-center items-start text-center md:text-left text-gray-800 hidden md:block">
-                <img class="object-fill mx-auto sm:mx-36" src="{{ asset('img/melayani.png') }}" alt="Melayani" />
+            <div class="w-full md:w-2/5 justify-center items-start text-center md:text-left text-gray-800  md:block">
+                <img class="object-fill mx-auto sm:mx-36" src="{{ asset('img/melayani.webp') }}" alt="Melayani" />
             </div>
         </div>
     </div>
