@@ -20,19 +20,32 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if( Auth::user()->roles != 'ADMIN')
-        {
-        
-        Alert::warning('Peringatan', 'Maaf Anda tidak punya akses');
-        return back();
+        if (Auth::user()->roles != 'ADMIN') {
+            Alert::warning('Peringatan', 'Maaf Anda tidak punya akses');
+            return back();
         }
 
-        $data = DB::table('users')->where('roles','=', 'PETUGAS')->orWhere('roles', '=', 'ADMIN')->get();
-        return view('pages.admin.petugas.index',[
-            'data' => $data
-        ]);
+        $query = User::query();
+
+        if ($request->has('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where(function ($q) use ($searchTerm) {
+                $q->orWhere('nik', 'like', $searchTerm)
+                    ->orWhere('name', 'like', $searchTerm)
+                    ->orWhere('email', 'like', $searchTerm)
+                    ->orWhere('phone', 'like', $searchTerm);
+            });
+        }
+
+        $query->where(function ($q) {
+            $q->where('roles', 'PETUGAS')
+                ->orWhere('roles', 'ADMIN');
+        });
+
+        $data = $query->paginate(10);
+        return view('pages.admin.petugas.index', compact('data'));
     }
 
     /**
@@ -54,24 +67,24 @@ class PetugasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'nik' => 'required|string|max:16|unique:users',
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'phone' => 'required|string|max:15',
-        'password' => 'required|string|confirmed|min:8',
-        
+            'nik' => 'required|string|max:16|unique:users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:15',
+            'password' => 'required|string|confirmed|min:8',
+
         ]);
 
         $user = $request->all();
 
         $user = User::create([
-        'nik' => $request->nik,
-        'name' => $request->name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'roles' => $request->roles,
-        'password' => Hash::make($request->password),
-        
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'roles' => $request->roles,
+            'password' => Hash::make($request->password),
+
         ]);
 
         Alert::success('Berhasil', 'Petugas baru ditambahkan');

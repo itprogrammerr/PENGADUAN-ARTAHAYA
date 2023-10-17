@@ -64,14 +64,14 @@
 <body>
 
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4">
             <a href="https://pengaduan.bankarthaya.com/" class="flex items-center">
                 <img src="{{ asset('assets/img/favicon.png') }}" class="h-8 mr-3" alt="Flowbite Logo" />
                 <div class="flex flex-col">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Arthaya
+                    <span class="self-start text-2xl font-semibold whitespace-nowrap dark:text-white">Arthaya
                         Support</span>
-                    <span class="self-start text-xs font-semibold whitespace-nowrap dark:text-white text-gray-400">By
-                        PT. BPR Indotama
+                    <span class="self-start text-xs font-semibold whitespace-nowrap dark:text-white text-gray-400">
+                        PT. BPR Arthaya Indotama
                         Pusaka</span>
                 </div>
             </a>

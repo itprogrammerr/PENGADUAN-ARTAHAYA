@@ -25,12 +25,12 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function() {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-
+        
         Route::resource('pengaduans', 'PengaduanController');
 
         Route::resource('tanggapan', 'TanggapanController');
 
-        Route::get('masyarakat', 'AdminController@masyarakat');
+        Route::get('masyarakat', 'AdminController@masyarakat')->name('masyarakat');
         Route::resource('petugas', 'PetugasController');
 
         Route::get('laporan', 'AdminController@laporan');

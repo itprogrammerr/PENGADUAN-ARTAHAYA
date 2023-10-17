@@ -23,8 +23,13 @@
             .logo {
                 display: none;
             }
+
+            .ex-p {
+                display: none;
+            }
         }
     </style>
+    @yield('css')
 </head>
 
 <body>

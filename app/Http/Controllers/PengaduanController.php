@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PengaduanController extends Controller
@@ -14,15 +15,23 @@ class PengaduanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Pengaduan::query();
 
-        $items = Pengaduan::all();
-        return view('pages.admin.pengaduan.index',[
-            'items' => $items
-        ]);
+        if ($request->has('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where(function ($q) use ($searchTerm) {
+                $q->orWhere('description', 'like', $searchTerm)
+                    ->orWhere('name', 'like', $searchTerm)
+                    ->orWhere('status', 'like', $searchTerm)
+                    ->orWhere('created_at', 'like', $searchTerm);
+            });
+        }
 
-        
+        $items = $query->paginate(10);
+
+        return view('pages.admin.pengaduan.index', compact('items'));
     }
 
     /**
@@ -54,16 +63,25 @@ class PengaduanController extends Controller
      */
     public function show($id)
     {
-        $item = Pengaduan::with([
-            'details', 'user' 
-        ])->findOrFail($id);
+        try {
+            $item = Pengaduan::with([
+                'details', 'user', 'tanggapans'
+            ])->findOrFail($id);
 
-        $tangap = Tanggapan::where('pengaduan_id',$id)->first();
+            $tangap = DB::table('tanggapans')
+                ->join('pengaduans', 'tanggapans.pengaduan_id', '=', 'pengaduans.id')
+                ->select('tanggapans.*', 'pengaduans.status')
+                ->where('tanggapans.pengaduan_id', $id)
+                ->get();
 
-        return view('pages.admin.pengaduan.detail',[
-        'item' => $item,
-        'tangap' => $tangap
-        ]);
+            return view('pages.admin.pengaduan.detail', [
+                'item' => $item,
+                'tangap' => $tangap
+            ]);
+        } catch (\Exception $e) {
+            Alert::error('Error', 'id not found');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -74,7 +92,7 @@ class PengaduanController extends Controller
      */
     public function edit($id)
     {
-       //
+        //
     }
 
     /**
@@ -86,8 +104,8 @@ class PengaduanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        
+
+
         $status->update($data);
         return redirect('admin/pengaduans');
     }

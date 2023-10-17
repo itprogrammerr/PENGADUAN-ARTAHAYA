@@ -1,5 +1,5 @@
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
-    <div class="container flex items-center justify-start h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+    <div class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <!-- Mobile hamburger -->
         <button class=" p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
             @click="toggleSideMenu" aria-label="Menu">
@@ -9,16 +9,17 @@
                     clip-rule="evenodd"></path>
             </svg>
         </button>
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center mr-2">
             <img src="{{ asset('assets/img/favicon.png') }}" class="text-center img-fluid logo mx-auto"
                 style="max-width: 15%; height: auto;" alt="Logo">
             <p
-                class="text-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                class="text-center text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ex-p">
                 Arthaya Support
             </p>
         </div>
 
-        <ul class="flex items-center flex-shrink-2 space-x-6">
+
+        <ul class="flex items-end justify-end space-x-6">
             <!-- Theme toggler -->
             <li class="flex">
                 <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"

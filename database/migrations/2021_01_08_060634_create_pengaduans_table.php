@@ -21,7 +21,7 @@ class CreatePengaduansTable extends Migration
             $table->integer('user_id');
             $table->text('description');
             $table->string('image');
-            $table->string('status')->default('Belum di Proses');
+            $table->integer('status')->default(1);
             $table->softDeletes();
             
             $table->timestamps();

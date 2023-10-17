@@ -17,9 +17,13 @@ class Tanggapan extends Model
     
     ];
 
+    // public function pengaduan()
+    // {
+    // 	return $this->hasOne(Pengaduan::class,'id', 'id');
+    // }
     public function pengaduan()
     {
-    	return $this->hasOne(Pengaduan::class,'id', 'id');
+    return $this->belongsTo(Pengaduan::class);
     }
 
     public function proses()

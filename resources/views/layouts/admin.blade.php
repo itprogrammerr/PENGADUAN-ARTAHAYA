@@ -23,6 +23,10 @@
             .logo {
                 display: none;
             }
+
+            .ex-p {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -38,6 +42,7 @@
     </div>
     @include('sweetalert::alert')
     @include('includes.admin.script')
+    @yield('js')
 </body>
 
 </html>
