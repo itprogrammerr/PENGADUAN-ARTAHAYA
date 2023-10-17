@@ -34,9 +34,12 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $no = 1;
+                @endphp
                 @foreach ($pengaduan as $item)
                     <tr>
-                        <td>{{ $item->id }} </td>
+                        <td>{{ $no++ }} </td>
                         <td>{{ $item->user_nik }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>

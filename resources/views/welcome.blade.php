@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{{-- //OPTIMATION mode mobile masih bisa digeser kanan kiri --}}
 
 <head>
     <meta charset="UTF-8" />
@@ -57,14 +58,12 @@
         }
     </style>
 
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 </head>
 
 
-<body>
-
+<body class="overflow-x-hidden">
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-around lg:justify-between mx-auto p-4">
             <a href="https://pengaduan.bankarthaya.com/" class="flex items-center">
                 <img src="{{ asset('assets/img/favicon.png') }}" class="h-8 mr-3" alt="Flowbite Logo" />
                 <div class="flex flex-col">
@@ -243,7 +242,7 @@
 
 
     <footer>
-        <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+        <div class="mx-auto w-full space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                 <div>
                     <div class="text-teal-600">
@@ -430,7 +429,7 @@
             </div>
 
             <p class="text-xs text-gray-500">
-                &copy; <span id="currentYear"></span>. PT BPR ARTHAYA INDOTAMA PUSAKA. All rights reserved.
+                &copy; <span id="currentYear"></span>. PT BPR ARTHAYA INDOTAMA PUSAKA. <br>All rights reserved.
             </p>
         </div>
     </footer>

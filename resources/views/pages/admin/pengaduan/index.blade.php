@@ -12,7 +12,7 @@
                     Pengaduan
                 </h2>
                 <div class="mb-4 mt-4 flex rounded-xl">
-                    <form action="{{ route('masyarakat') }}" method="get" class="flex w-full">
+                    <form action="{{ route('pengaduans.index') }}" method="get" class="flex w-full">
                         @csrf
                         <input id="searchInput" name="search"
                             class="w-full px-4 py-2 border rounded-l-xl focus:outline-none focus:border-purple-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
