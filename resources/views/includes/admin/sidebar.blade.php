@@ -1,20 +1,23 @@
 <!-- Desktop sidebar -->
-<aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+<aside class="z-20 hidden shadow-md w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
     <div class="py-4 text-gray-500 dark:text-gray-400">
-        <div class="flex flex-row">
-            <img src="{{ asset('assets/img/favicon.png') }}" alt=""
-                class="inline-flex ml-3 items-center transform transition hover:scale-125 duration-300 ease-in-out"
-                style="max-width: 20%; height: auto;" />
-            <div class="flex-col">
-                <p class="font-semibold mt-3 text-xl">Arthaya Support</p>
-                <p class="text-sm">by Bank Arthaya</p>
+        <a href="{{ route('dashboard') }}">
+            <div class="flex flex-row">
+                <img src="{{ asset('assets/img/favicon.png') }}" alt=""
+                    class="inline-flex ml-3 items-center transform transition hover:scale-125 duration-300 ease-in-out"
+                    style="max-width: 20%; height: auto;" />
+                <div class="flex-col">
+                    <p class="font-semibold mt-3 text-xl">Arthaya Support</p>
+                    <p class="text-sm">by Bank Arthaya</p>
+                </div>
             </div>
-        </div>
+        </a>
         <ul class="mt-6">
             <li class="relative px-6 py-3">
                 <span
-                    class="{{ request()->routeIs('dashboard') ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg' : '' }} "
+                    class="{{ request()->is('admin') ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg' : '' }} "
                     aria-hidden="true"></span>
+
                 <a class="inline-flex items-center w-full text-sm font-semibold  transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     href="{{ route('dashboard') }} ">
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -92,6 +95,7 @@
         </ul>
     </div>
 </aside>
+
 <!-- Mobile sidebar -->
 <!-- Backdrop -->
 <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
