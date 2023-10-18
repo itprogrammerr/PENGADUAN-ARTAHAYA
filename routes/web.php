@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -27,8 +28,8 @@ Route::prefix('admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
         
         Route::resource('pengaduans', 'PengaduanController');
-
         Route::resource('tanggapan', 'TanggapanController');
+        Route::resource('adminprofile','AdminProfileController');
 
         Route::get('masyarakat', 'AdminController@masyarakat')->name('masyarakat');
         Route::resource('petugas', 'PetugasController');
@@ -45,11 +46,8 @@ Route::prefix('user')
     ->group(function() {
 				Route::get('/', 'MasyarakatController@index')->name('masyarakat-dashboard');
                 Route::resource('pengaduan', 'MasyarakatController');
+                Route::resource('profile','ProfileController');
                 Route::get('pengaduan', 'MasyarakatController@lihat')->name('show-pengaduan');
 });
-
-
-
-
 
 require __DIR__.'/auth.php';

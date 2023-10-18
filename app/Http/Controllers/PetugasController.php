@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,29 +65,34 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nik' => 'required|string|max:16|unique:users',
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:15',
-            'password' => 'required|string|confirmed|min:8',
+        try {
+            $request->validate([
+                'nik' => 'required|string|max:16|unique:users',
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'required|string|max:15',
+                'password' => 'required|string|confirmed|min:8',
 
-        ]);
+            ]);
 
-        $user = $request->all();
+            $user = $request->all();
 
-        $user = User::create([
-            'nik' => $request->nik,
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'roles' => $request->roles,
-            'password' => Hash::make($request->password),
+            $user = User::create([
+                'nik' => $request->nik,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'roles' => $request->roles,
+                'password' => Hash::make($request->password),
 
-        ]);
+            ]);
 
-        Alert::success('Berhasil', 'Petugas baru ditambahkan');
-        return redirect('admin/petugas');
+            Alert::success('Berhasil', 'Petugas baru ditambahkan');
+            return redirect('admin/petugas');
+        } catch (\Throwable $e) {
+            Alert::error('Error', $e->getMessage());
+            return redirect()->back();
+        }
     }
 
     /**

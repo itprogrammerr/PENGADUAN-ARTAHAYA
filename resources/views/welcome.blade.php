@@ -100,10 +100,18 @@
                     <li>
                         @if (Route::has('login'))
                             @auth
-                                <button
-                                    class="block py-2 pl-3 pr-4 mt-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none">
-                                    <a href="{{ url('dashboard') }}" style="font-weight: bold;">Dashboard</a>
-                                </button>
+                                @if (auth()->user()->roles == 'USER')
+                                    <button
+                                        class="block py-2 pl-3 pr-4 mt-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none">
+                                        <a href="{{ route('masyarakat-dashboard') }}"
+                                            style="font-weight: bold;">Dashboard</a>
+                                    </button>
+                                @else
+                                    <button
+                                        class="block py-2 pl-3 pr-4 mt-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none">
+                                        <a href="{{ url('admin') }}" style="font-weight: bold;">Dashboard</a>
+                                    </button>
+                                @endif
                             @else
                                 <button
                                     class="block py-2 pl-3 pr-4 mt-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent focus:outline-none">

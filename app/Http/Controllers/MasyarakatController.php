@@ -21,16 +21,20 @@ class MasyarakatController extends Controller
      */
     public function index()
     {
-        $userNik = Auth::user()->nik;
-        $allPengaduans = Pengaduan::where('user_nik', $userNik)->count();
-        $allTanggapans = Tanggapan::whereHas('pengaduan', function ($query) use ($userNik) {
-            $query->where('user_nik', $userNik);
-        })->count();
-        $allPendings = Pengaduan::where("user_nik",$userNik)->where('status', 'Belum di Proses')->count();
-        $allProcess = Pengaduan::where("user_nik",$userNik)->where('status', 'Sedang di Proses')->count();
-        $allSelesai = Pengaduan::where("user_nik",$userNik)->where('status', 'Selesai')->count();
-        // return view('pages.masyarakat.index', ['liat' => $user]);
-        return view('pages.masyarakat.index',compact('allPengaduans','allTanggapans','allPendings','allProcess','allSelesai'));
+        try {
+            $userNik = Auth::user()->nik;
+            $allPengaduans = Pengaduan::where('user_nik', $userNik)->count();
+            $allTanggapans = Tanggapan::whereHas('pengaduan', function ($query) use ($userNik) {
+                $query->where('user_nik', $userNik);
+            })->count();
+            $allPendings = Pengaduan::where("user_nik", $userNik)->where('status', 'Belum di Proses')->count();
+            $allProcess = Pengaduan::where("user_nik", $userNik)->where('status', 'Sedang di Proses')->count();
+            $allSelesai = Pengaduan::where("user_nik", $userNik)->where('status', 'Selesai')->count();
+            return view('pages.masyarakat.index', compact('allPengaduans', 'allTanggapans', 'allPendings', 'allProcess', 'allSelesai'));
+        } catch (\Exception $e) {
+            Alert::error('Error', $e->getMessage());
+            return back();
+        }
     }
 
     /**
@@ -88,13 +92,8 @@ class MasyarakatController extends Controller
 
     public function lihat()
     {
-
-
         $user = Auth::user()->pengaduan()->get();
-
-
         $items = Pengaduan::get();
-
         return view('pages.masyarakat.detail', [
             'items' => $user
         ]);
@@ -160,7 +159,8 @@ class MasyarakatController extends Controller
             Alert::success('Berhasil', 'Pengaduan terupdate');
             return redirect()->back();
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            Alert::error('Error',$e->getMessage());
+            return redirect()->back();
         }
     }
 

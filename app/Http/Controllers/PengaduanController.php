@@ -104,8 +104,6 @@ class PengaduanController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $status->update($data);
         return redirect('admin/pengaduans');
     }
@@ -118,10 +116,15 @@ class PengaduanController extends Controller
      */
     public function destroy($id)
     {
-        $pengaduan = Pengaduan::find($id);
-        $pengaduan->delete();
+        try {
+            $pengaduan = Pengaduan::find($id);
+            $pengaduan->delete();
 
-        Alert::success('Berhasil', 'Pengaduan telah di hapus');
-        return redirect('admin/pengaduans');
+            Alert::success('Berhasil', 'Pengaduan telah di hapus');
+            return redirect('admin/pengaduans');
+        } catch (\Throwable $e) {
+            Alert::error('Error',$e->getMessage());
+            return redirect()->back();
+        }
     }
 }

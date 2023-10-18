@@ -22,7 +22,7 @@
                 <button type="button" class="z-50 cursor-pointer"
                     @click="insertModal = false; localStorage.setItem('insertModal', false)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor">
+                        fill="none" stroke="#616161">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d=" M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -51,7 +51,7 @@
                         <label class="block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Tanggapan</span>
                             <textarea
-                                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                class="block w-full mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                 rows="8" type="text" placeholder="Isi Tanggapan Anda" name="tanggapan">
                                 {{ $t->tanggapan }}
                             </textarea>
@@ -60,7 +60,7 @@
                             <span class="text-gray-700 dark:text-gray-400">Status</span>
 
                             <select
-                                class="block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                class="block w-full text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                 name="status">
                                 @if ($t->status === 'Belum di Proses')
                                     <option value="Belum di Proses" selected>Belum di Proses</option>

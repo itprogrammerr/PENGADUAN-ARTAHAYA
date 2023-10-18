@@ -13,20 +13,20 @@ use PDF;
 
 class AdminController extends Controller
 {
-    public function __invoke()
-    {
-    }
-
     public function index($id)
     {
+        try {
+            $item = Pengaduan::with([
+                'details', 'user'
+            ])->findOrFail($id);
 
-        $item = Pengaduan::with([
-            'details', 'user'
-        ])->findOrFail($id);
-
-        return view('pages.admin.tanggapan.add', [
-            'item' => $item
-        ]);
+            return view('pages.admin.tanggapan.add', [
+                'item' => $item
+            ]);
+        } catch (\Exception $e) {
+            Alert::error('Error', $e->getMessage());
+            return back();
+        }
     }
 
     public function masyarakat(Request $request)
@@ -41,14 +41,13 @@ class AdminController extends Controller
                     ->orWhere('phone', 'like', $searchTerm);
             });
         }
-        $query->where('roles','=','USER');
+        $query->where('roles', '=', 'USER');
         $data = $query->paginate(10);
         return view('pages.admin.masyarakat', compact('data'));
     }
 
     public function laporan()
     {
-
         $pengaduan = Pengaduan::all();
 
         return view('pages.admin.laporan', [
@@ -58,7 +57,6 @@ class AdminController extends Controller
 
     public function cetak()
     {
-
         $pengaduan = Pengaduan::all();
 
         $pdf = PDF::loadview('pages.admin.pengaduan', [
@@ -69,7 +67,6 @@ class AdminController extends Controller
 
     public function pdf($id)
     {
-
         $pengaduan = Pengaduan::find($id);
 
         $pdf = PDF::loadview('pages.admin.pengaduan.cetak', compact('pengaduan'))->setPaper('a4');
