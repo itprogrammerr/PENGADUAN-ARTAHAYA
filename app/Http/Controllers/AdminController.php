@@ -46,12 +46,25 @@ class AdminController extends Controller
         return view('pages.admin.masyarakat', compact('data'));
     }
 
-    public function laporan()
+    public function laporan(Request $request)
     {
-        $pengaduan = Pengaduan::all();
+        $query = Pengaduan::query();
+        if ($request->has('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where(function ($q) use ($searchTerm) {
+                $q->orWhere('user_nik', 'like', $searchTerm)
+                ->orWhere('name', 'like', $searchTerm)
+                ->orWhere('user_id', 'like', $searchTerm)
+                ->orWhere('description', 'like', $searchTerm)
+                ->orWhere('image', 'like', $searchTerm)
+                ->orWhere('status', 'like', $searchTerm);
+            });
+        }
+        $data = $query->paginate(10);
+        // $pengaduan = Pengaduan::all();
 
         return view('pages.admin.laporan', [
-            'pengaduan' => $pengaduan
+            'pengaduan' => $data,
         ]);
     }
 

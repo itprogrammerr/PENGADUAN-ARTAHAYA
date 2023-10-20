@@ -82,18 +82,11 @@
 </head>
 
 <body style="background-color: #e9ecef;">
-
-    <!-- start preheader -->
     <div class="preheader"
         style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
         Hey {{ $user->name }},
     </div>
-    <!-- end preheader -->
-
-    <!-- start body -->
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-
-        <!-- start logo -->
         <tr>
             <td align="center" bgcolor="#e9ecef">
 
@@ -110,12 +103,8 @@
                         </td>
                     </tr>
                 </table>
-
             </td>
         </tr>
-        <!-- end logo -->
-
-        <!-- start hero -->
         <tr>
             <td align="center" bgcolor="#e9ecef">
 
@@ -129,12 +118,8 @@
                         </td>
                     </tr>
                 </table>
-
             </td>
         </tr>
-        <!-- end hero -->
-
-        <!-- start copy block -->
         <tr>
             <td align="center" bgcolor="#e9ecef">
 
@@ -205,9 +190,6 @@
 
             </td>
         </tr>
-        <!-- end copy block -->
-
-        <!-- start footer -->
         <tr>
             <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
 
@@ -225,9 +207,7 @@
                 </table>
             </td>
         </tr>
-
     </table>
-
 </body>
 
 </html>

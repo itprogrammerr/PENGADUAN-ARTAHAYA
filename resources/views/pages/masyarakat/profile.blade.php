@@ -4,16 +4,11 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* 2 kolom */
             grid-template-rows: repeat(3, 1fr);
-            /* 3 baris */
             gap: 1rem;
-            /* jarak antara elemen */
         }
 
         .grid-item {
-            /* Gaya untuk setiap elemen dalam grid */
-            /* border: 1px solid #ccc; */
             padding: 1rem;
             text-align: start;
         }
@@ -27,7 +22,6 @@
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Profile
         </h2>
-
 
         <form action="{{ route('profile.update', [$data->id]) }}" method="post" class="max-w-md mx-auto mt-4">
             @csrf

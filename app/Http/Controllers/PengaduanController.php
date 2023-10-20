@@ -29,7 +29,9 @@ class PengaduanController extends Controller
             });
         }
 
-        $items = $query->paginate(10);
+        $items = $query->orderBy('id','desc')->paginate(10);
+        // $cekdata = Pengaduan::all();
+        // dd($cekdata);
 
         return view('pages.admin.pengaduan.index', compact('items'));
     }
@@ -52,7 +54,6 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -64,16 +65,17 @@ class PengaduanController extends Controller
     public function show($id)
     {
         try {
-            $item = Pengaduan::with([
-                'details', 'user', 'tanggapans'
-            ])->findOrFail($id);
-
+            $item = DB::table('pengaduans')
+                ->join('users','pengaduans.user_id','=','users.id')
+                ->select('pengaduans.*','users.name as username','users.nik as usernik', 'users.phone as userphone')
+                ->where('pengaduans.id', $id)
+                ->first();
+            
             $tangap = DB::table('tanggapans')
                 ->join('pengaduans', 'tanggapans.pengaduan_id', '=', 'pengaduans.id')
                 ->select('tanggapans.*', 'pengaduans.status')
                 ->where('tanggapans.pengaduan_id', $id)
                 ->get();
-
             return view('pages.admin.pengaduan.detail', [
                 'item' => $item,
                 'tangap' => $tangap

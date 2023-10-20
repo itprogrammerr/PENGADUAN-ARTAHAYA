@@ -17,19 +17,19 @@ use RealRashid\SweetAlert\Facades\Alert;
 */
 
 Route::get('/', function () {
-    
+
     return view('welcome');
 });
 
 // Admin/Petugas
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])
-    ->group(function() {
+    ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
-        
+
         Route::resource('pengaduans', 'PengaduanController');
         Route::resource('tanggapan', 'TanggapanController');
-        Route::resource('adminprofile','AdminProfileController');
+        Route::resource('adminprofile', 'AdminProfileController');
 
         Route::get('masyarakat', 'AdminController@masyarakat')->name('masyarakat');
         Route::resource('petugas', 'PetugasController');
@@ -37,17 +37,17 @@ Route::prefix('admin')
         Route::get('laporan', 'AdminController@laporan');
         Route::get('laporan/cetak', 'AdminController@cetak');
         Route::get('pengaduan/cetak/{id}', 'AdminController@pdf');
-});
+    });
 
 
 // Masyarakat
 Route::prefix('user')
     ->middleware(['auth', 'MasyarakatMiddleware'])
-    ->group(function() {
-				Route::get('/', 'MasyarakatController@index')->name('masyarakat-dashboard');
-                Route::resource('pengaduan', 'MasyarakatController');
-                Route::resource('profile','ProfileController');
-                Route::get('pengaduan', 'MasyarakatController@lihat')->name('show-pengaduan');
-});
+    ->group(function () {
+        Route::get('/', 'MasyarakatController@index')->name('masyarakat-dashboard');
+        Route::resource('pengaduan', 'MasyarakatController');
+        Route::resource('profile', 'ProfileController');
+        Route::get('pengaduan', 'MasyarakatController@lihat')->name('show-pengaduan');
+    });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

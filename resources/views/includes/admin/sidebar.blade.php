@@ -77,7 +77,7 @@
                 </li>
             </ul>
         @endif
-        <ul>
+        {{-- <ul>
             <li class="relative px-6 py-3">
                 <span
                     class="{{ request()->is('admin/laporan') ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg' : '' }} "
@@ -92,7 +92,7 @@
                     <span class="ml-4">Laporan</span>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </aside>
 
@@ -177,7 +177,7 @@
                 </li>
             </ul>
         @endif
-        <ul>
+        {{-- <ul>
             <li class="relative px-6 py-3">
                 <span
                     class="{{ request()->is('admin/laporan') ? 'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg' : '' }} "
@@ -192,8 +192,7 @@
                     <span class="ml-4">Laporan</span>
                 </a>
             </li>
-        </ul>
-        {{-- <ul>
+        </ul> <ul>
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     href="forms.html">
@@ -206,8 +205,6 @@
                     <span class="ml-4">Forms</span>
                 </a>
             </li>
-
         </ul> --}}
-
     </div>
 </aside>

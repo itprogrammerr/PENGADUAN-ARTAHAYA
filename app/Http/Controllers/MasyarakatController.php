@@ -78,7 +78,7 @@ class MasyarakatController extends Controller
             Alert::success('Berhasil', 'Pengaduan terkirim');
             return redirect()->back();
         } catch (\Exception $e) {
-            Alert::error("Gagal", $e->getMessage());
+            Alert::error("Gagal", "Periksa kembali data Input anda");
             return redirect()->back();
         }
     }
@@ -138,12 +138,13 @@ class MasyarakatController extends Controller
                 'description' => 'required',
                 'image' => ['max:2048', 'mimes:jpg,jpeg,png'],
             ]);
-
+            
             $pengaduanEdit = Pengaduan::findOrFail($id);
 
-            if ($request->hasFile($request->image)) {
-                if ($pengaduanEdit->image && File::exists(public_path('file/laporan/image/' . $pengaduanEdit->image))) {
-                    File::delete(public_path('file/laporan/image/' . $pengaduanEdit->image));
+            if ($request->hasFile('image')) {
+                $oldImage= $pengaduanEdit->image;
+                if ($oldImage && File::exists(public_path('file/laporan/image/' . $oldImage))) {
+                    File::delete(public_path('file/laporan/image/' . $oldImage));
                 }
                 $imageEXT = $request->file('image')->getClientOriginalName();
                 $filename = pathinfo($imageEXT, PATHINFO_FILENAME);

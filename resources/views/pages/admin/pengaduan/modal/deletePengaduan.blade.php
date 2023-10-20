@@ -1,9 +1,9 @@
-{{-- delete --}}
 <div x-data="{ 'deleteModal': false }" @keydown.escape="deleteModal = false" x-cloak class="mr-2">
-    <button type="button" @click="deleteModal = true">
-        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    <button type="submit" @click="deleteModal=true">
+        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd"></path>
         </svg>
     </button>
 
@@ -15,7 +15,7 @@
 
             <div class="flex items-center justify-between ">
                 <h5 class="mr-3 text-gray-700 dark:text-gray-400 max-w-none">
-                    Edit Data</h5>
+                    Hapus Data</h5>
                 <button type="button" class="z-50 cursor-pointer" @click="deleteModal = false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor">
@@ -26,7 +26,7 @@
             </div>
 
             <div>
-                <form action="{{ route('pengaduan.update', [$item->id]) }} " method="POST"
+                <form action="{{ route('pengaduans.destroy', $item->id) }} " method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('delete')

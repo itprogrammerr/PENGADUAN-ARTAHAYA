@@ -18,7 +18,6 @@
             </p>
         </div>
 
-
         <ul class="flex items-end justify-end space-x-6">
             <!-- Theme toggler -->
             <li class="flex">
@@ -57,9 +56,9 @@
                             <div
                                 class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
                                 <div
-                                    class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
-                                    <p class="w-4 h-4 mr-3">
-                                        {{ Auth::user()->name }}
+                                    class="inline-flex w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+                                    <p class="h-4">
+                                        {{ strlen(Auth::user()->name) > 5 ? substr(Auth::user()->name, 0, 5) . '...' : Auth::user()->name }}
                                     </p>
                                 </div>
                             </div>

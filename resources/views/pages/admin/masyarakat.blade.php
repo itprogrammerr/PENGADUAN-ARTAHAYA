@@ -7,21 +7,33 @@
 @section('content')
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container grid px-6 mx-auto">
-            <div class="flex flex-row justify-between">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Data Masyarakat
-                </h2>
-                <div class="mb-4 mt-4 flex rounded-xl">
-                    <form action="{{ route('masyarakat') }}" method="get" class="flex w-full">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Data Masyarakat
+            </h2>
+            <div class="flex flex-col items-center sm:flex-row justify-between mb-8">
+                @include('pages.admin.modal.addMasyarakat')
+
+                <div class="mt-4 sm:mt-0 sm:flex rounded-xl">
+                    <form action="{{ route('masyarakat') }}" method="get" class="w-full flex">
                         @csrf
-                        <input id="searchInput" name="search"
-                            class="w-full px-4 py-2 border rounded-l-xl focus:outline-none focus:border-purple-400 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-                            type="text" placeholder="Cari...">
-                        <button type="submit"
-                            class="px-6 py-2 bg-purple-600 text-white rounded-r-xl hover:bg-purple-700 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Cari</button>
+                        <div class="relative flex-1 mr-2">
+                            <input
+                                class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-lg text-sm focus:outline-none w-full"
+                                type="search" name="search" placeholder="Search">
+                            <button type="submit" class="absolute right-0 top-0 mt-2 mr-2 sm:mt-0 sm:mr-0">
+                                <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                    viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                                    xml:space="preserve" width="512px" height="512px">
+                                    <path
+                                        d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                                </svg>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
+
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
                     @if ($errors->any())
@@ -42,6 +54,7 @@
                                 <th class="px-4 py-3">NIK</th>
                                 <th class="px-4 py-3">No. Hp</th>
                                 <th class="px-4 py-3">Email</th>
+                                <th class="px-4 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -65,6 +78,12 @@
                                     <td class="px-4 py-3 text-sm">
                                         {{ $masyarakat->email }}
                                     </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <div class="flex items-center space-x-4 text-sm">
+                                            @include('pages.admin.modal.editMasyarakat')
+                                            @include('pages.admin.modal.deleteMasyarakat')
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -77,7 +96,7 @@
                     </table>
 
                     <div class="mt-4 flex items-center justify-between">
-                        <div class="flex-1 flex justify-between sm:hidden">
+                        {{-- <div class="flex-1 flex justify-between sm:hidden">
                             @if ($data->onFirstPage())
                                 <span
                                     class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-not-allowed leading-5 rounded-md">
@@ -89,7 +108,6 @@
                                     Previous
                                 </a>
                             @endif
-
                             @if ($data->hasMorePages())
                                 <a href="{{ $data->nextPageUrl() }}"
                                     class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
@@ -101,13 +119,13 @@
                                     Next
                                 </span>
                             @endif
-                        </div>
+                        </div> --}}
 
-                        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
+                        <div class="sm:flex-1 sm:flex sm:items-center sm:justify-center">
                             <div>
-                                <p class="text-sm text-gray-700">
+                                <p class="text-sm text-gray-700 dark:text-gray-200">
                                     Showing
-                                    <span class="font-medium">{{ $data->firstItem() }}</span>
+                                    <span class="font-medium ">{{ $data->firstItem() }}</span>
                                     to
                                     <span class="font-medium">{{ $data->lastItem() }}</span>
                                     of
@@ -133,4 +151,17 @@
             </div>
         </div>
     </main>
+@endsection
+
+@section('js')
+    <script>
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 @endsection

@@ -26,7 +26,7 @@
                 <button type="button" class="z-50 cursor-pointer"
                     @click="insertModal = false; localStorage.setItem('insertModal', false)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor">
+                        fill="none" stroke="#cccccc">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -37,8 +37,6 @@
                 <h2 class="my-6 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">
                     Silahkan ajukan pengaduan Anda!
                 </h2>
-
-
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -64,20 +62,22 @@
                             <input
                                 class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                 type="file" accept="image/*" value="{{ old('image') }}" name="image" />
+                            <span style="font-size: 12px; color: #f20202">
+                                type: jpg, jpeg, png || max: 2 MB
+                            </span>
                         </label>
 
-                        <div class="flex flex-row">
-                            <button type="submit"
-                                class="mt-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple mr-4">
-                                Laporkan
-                            </button>
+                        <div class="flex flex-row justify-end">
                             <button type="button"
                                 @click="insertModal = false; localStorage.setItem('insertModal', false)"
                                 class="mt-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-600 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray">
                                 Tutup
                             </button>
+                            <button type="submit"
+                                class="mt-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple mr-4">
+                                Laporkan
+                            </button>
                         </div>
-
                     </div>
                 </form>
             </div>

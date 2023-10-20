@@ -4,16 +4,11 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* 2 kolom */
             grid-template-rows: repeat(3, 1fr);
-            /* 3 baris */
             gap: 1rem;
-            /* jarak antara elemen */
         }
 
         .grid-item {
-            /* Gaya untuk setiap elemen dalam grid */
-            /* border: 1px solid #ccc; */
             padding: 1rem;
             text-align: start;
         }

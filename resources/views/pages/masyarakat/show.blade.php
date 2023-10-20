@@ -108,7 +108,6 @@
                         </div>
                     @endforeach
                     <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400   dark:bg-gray-800">
-
                         <div class="text-center flex-1">
                             <h1 class="mb-8 font-semibold">Tanggapan</h1>
                             <div class="text-gray-800 dark:text-gray-400">
@@ -138,6 +137,6 @@
                     </div>
                 </div>
             </div>
-
+        </div>
     </main>
 @endsection

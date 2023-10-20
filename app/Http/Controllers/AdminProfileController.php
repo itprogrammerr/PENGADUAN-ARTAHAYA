@@ -29,7 +29,43 @@ class AdminProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'nik' => 'required|numeric|unique:users',
+                'name' => 'required',
+                'email' => 'required|unique:users',
+                'password' => 'required',
+                'phone' => 'required',
+                'roles' => 'required'
+            ]);
+
+            $user = new User();
+            $user->nik = $request->nik;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->roles = $request->roles;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            Alert::success('Berhasil', 'Berhasil menambahkan data');
+            return back();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->errors();
+
+            if (array_key_exists('nik', $errors)) {
+                Alert::error('Error', 'NIK telah digunakan sebelumnya.');
+            }
+
+            if (array_key_exists('email', $errors)) {
+                Alert::error('Error', 'Email telah digunakan sebelumnya.');
+            }
+
+            return back()->withErrors($errors);
+        } catch (\Exception $e) {
+            Alert::error('Error', $e->getMessage());
+            return back();
+        }
     }
 
     /**
@@ -52,7 +88,8 @@ class AdminProfileController extends Controller
             $profile->save();
 
             Alert::success('Berhasil', 'Berhasil merubah data');
-            return redirect()->route('adminprofile.index');
+            // return redirect()->route('adminprofile.index');
+            return back();
         } catch (\Exception $e) {
             Alert::error('error', $e->getMessage());
             return back();
@@ -67,6 +104,15 @@ class AdminProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $profile = User::findOrFail($id);
+            $profile->delete();
+
+            Alert::success('Berhasil', 'Berhasil menghapus data');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('error', $e->getMessage());
+            return back();
+        }
     }
 }

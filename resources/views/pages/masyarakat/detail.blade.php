@@ -87,7 +87,6 @@
                                             <a href="{{ route('pengaduan.show', $item->id) }} "
                                                 class="flex items-center justify-between  text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray mr-2"
                                                 aria-label="Detail">
-
                                                 <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24"
                                                     stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -113,7 +112,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </main>
 @endsection

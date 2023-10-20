@@ -42,29 +42,29 @@
 
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
-                    @foreach ($item->details as $i)
+                    {{-- @foreach ($item as $i) --}}
                         <table
                             class="w-full text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 p-3">
                             <tbody>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Nama </td>
                                     <td> : </td>
-                                    <td>{{ $i->name }}</td>
+                                    <td>{{ $item->username }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>NIK </td>
                                     <td> : </td>
-                                    <td>{{ $i->user_nik }}</td>
+                                    <td>{{ $item->usernik }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>No. Telepone </td>
+                                    <td>No. Telephone </td>
                                     <td> : </td>
-                                    <td>{{ $i->user->phone }}</td>
+                                    <td>{{ $item->userphone }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Tanggal </td>
                                     <td> : </td>
-                                    <td>{{ $i->created_at->format('l, d F Y - H:i:s') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('l, d F Y - H:i:s') }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Status </td>
@@ -92,7 +92,7 @@
                                     <td>Deskripsi </td>
                                     <td> : </td>
                                     <td>
-                                        {{ $i->description }}
+                                        {{ $item->description }}
                                     </td>
                                 </tr>
 
@@ -106,7 +106,7 @@
                                     loading="lazy" />
                             </div>
                         </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                 </div>
             </div>
             <div class="px-4 py-3 mb-8 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800 ">
@@ -135,16 +135,6 @@
                                             {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
                                         </div>
                                         <div class="flex justify-between items-center mt-2">
-                                            {{-- <a href="{{ route('tanggapan.edit', $t->id) }}" class="mr-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="#f0e10e" stroke-width="2"
-                                                    stroke-linecap="butt" stroke-linejoin="arcs">
-                                                    <path
-                                                        d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34">
-                                                    </path>
-                                                    <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
-                                                </svg>
-                                            </a> --}}
                                             @include('pages.admin.pengaduan.modal.editTanggapan')
                                             @include('pages.admin.pengaduan.modal.deleteTanggapan')
                                         </div>
