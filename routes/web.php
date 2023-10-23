@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+
+Route::resource('guest', "GuestController");
 
 // Admin/Petugas
 Route::prefix('admin')
