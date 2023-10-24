@@ -40,15 +40,14 @@ class GuestController extends Controller
     public function store(Request $request)
     {
         try {
-            // dd($request->all());
             $request->validate([
                 'description' => 'required',
-                'email' => 'required',
+                'email' => 'required|unique:users',
                 'image' => ['required', 'max:2048', 'mimes:jpg,jpeg,png'],
             ]);
 
             $newUser = new User;
-            $newUser->nik = intval(substr(uniqid("",true), 0, 16));
+            $newUser->nik = intval(substr(uniqid("", true), 0, 16));
             $newUser->name = "Guest" . substr(uniqid(), 0, 12);
             $newUser->email = $request->email;
             $newUser->phone = intval(substr(uniqid(), 0, 12));
@@ -70,13 +69,25 @@ class GuestController extends Controller
             $laporan->image = $fileimage;
             $laporan->save();
 
-             $this->sendEmail($newUser);
+            $this->sendEmail($newUser);
 
             Alert::success('Berhasil', 'Pengaduan terkirim');
             return redirect()->back();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->errors();
+
+            if (array_key_exists('NIK', $errors)) {
+                Alert::error('Error', 'NIK telah digunakan sebelumnya.');
+            }
+
+            if (array_key_exists('email', $errors)) {
+                Alert::error('Error', 'Email telah digunakan sebelumnya.');
+            }
+
+            return back()->withErrors($errors);
         } catch (\Exception $e) {
-            Alert::error("Error", "Silahkan Coba Lagi ".$e->getMessage());
-            return redirect()->back();
+            Alert::error('Error', $e->getMessage());
+            return back();
         }
     }
 
