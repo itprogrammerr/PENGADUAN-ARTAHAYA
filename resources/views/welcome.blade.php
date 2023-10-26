@@ -28,6 +28,8 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@yoga_1721" />
 
+    <meta name="google-site-verification" content="SwmuaPRuK2FOMvVo_NMgwpU3_V8lxnt34tbgAn0EFZY" />
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/favicon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon.png') }}">
@@ -303,8 +305,6 @@
             </div>
         </div>
     </section>
-    <!-- End block -->
-    <!-- Start block -->
     <section class="bg-white dark:bg-gray-900">
         <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
             <h2 id="faq"
@@ -401,16 +401,12 @@
                             <p class="mb-2 text-gray-500 dark:text-gray-400">Jika Anda tidak puas dengan tanggapan
                                 kami, Anda dapat meminta untuk berbicara dengan supervisor atau mengajukan pengaduan
                                 resmi. Kami akan memastikan bahwa keluhan Anda ditangani dengan serius dan adil.</p>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End block -->
-    <!-- Start block -->
     <!-- End block -->
     <footer class="bg-white dark:bg-gray-800">
         <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
@@ -565,7 +561,7 @@
     @include('sweetalert::alert')
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-    <!--Start of Tawk.to Script-->
+
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
@@ -579,7 +575,6 @@
             s0.parentNode.insertBefore(s1, s0);
         })();
     </script>
-    <!--End of Tawk.to Script-->
 </body>
 
 </html>

@@ -18,11 +18,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 */
 
 Route::get('/', function () {
-
     return view('welcome');
 });
 
 Route::resource('guest', "GuestController");
+
+Route::get('/sitemap.xml', function () {
+    // return view('sitemap');
+    return response()->view('sitemap')->header('Content-Type', 'text/xml');
+});
 
 // Admin/Petugas
 Route::prefix('admin')
