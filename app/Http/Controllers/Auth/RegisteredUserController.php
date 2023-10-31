@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'nik' => 'required|string|max:16|unique:users',
             'name' => 'required|string|max:255',
@@ -42,6 +43,7 @@ class RegisteredUserController extends Controller
         ]);
 
         Auth::login($user = User::create([
+            'uuid'=>uniqid(),
             'nik' => $request->nik,
             'name' => $request->name,
             'email' => $request->email,

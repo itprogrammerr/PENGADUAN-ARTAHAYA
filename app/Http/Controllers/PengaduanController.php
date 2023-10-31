@@ -18,21 +18,21 @@ class PengaduanController extends Controller
     public function index(Request $request)
     {
         $query = Pengaduan::query();
+        $query->join('users','pengaduans.user_uuid','=','users.uuid');
 
         if ($request->has('search')) {
             $searchTerm = '%' . $request->search . '%';
             $query->where(function ($q) use ($searchTerm) {
-                $q->orWhere('description', 'like', $searchTerm)
-                    ->orWhere('name', 'like', $searchTerm)
-                    ->orWhere('status', 'like', $searchTerm)
-                    ->orWhere('created_at', 'like', $searchTerm);
+                $q->orWhere('pengaduans.description', 'like', $searchTerm)
+                    ->orWhere('pengaduans.name', 'like', $searchTerm)
+                    ->orWhere('pengaduans.status', 'like', $searchTerm)
+                    ->orWhere('pengaduans.created_at', 'like', $searchTerm)
+                    ->orWhere('users.name', 'like', $searchTerm);
             });
         }
+        $query->select('pengaduans.*','users.name as username');
 
         $items = $query->orderBy('id','desc')->paginate(10);
-        // $cekdata = Pengaduan::all();
-        // dd($cekdata);
-
         return view('pages.admin.pengaduan.index', compact('items'));
     }
 
@@ -66,7 +66,7 @@ class PengaduanController extends Controller
     {
         try {
             $item = DB::table('pengaduans')
-                ->join('users','pengaduans.user_id','=','users.id')
+                ->join('users','pengaduans.user_uuid','=','users.uuid')
                 ->select('pengaduans.*','users.name as username','users.nik as usernik', 'users.phone as userphone')
                 ->where('pengaduans.id', $id)
                 ->first();

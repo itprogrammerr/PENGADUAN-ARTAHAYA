@@ -53,7 +53,7 @@
                 <div class="flex items-center lg:order-2">
                     @if (Route::has('login'))
                         @auth
-                            @if (auth()->user()->roles == 'USER')
+                            @if (auth()->user()->roles === 0)
                                 <a href="{{ route('masyarakat-dashboard') }}"
                                     class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">
                                     Dashboard
@@ -261,7 +261,7 @@
                     <form action="{{ route('guest.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
-                            <p class="mb-2 flex items-center text-sm text-gray-900 dark:text-white">E-mail <button
+                            <p class="mb-2 flex items-center text-sm font-medium text-gray-900 dark:text-white">E-mail <button
                                     data-popover-target="popover-description" data-popover-placement="top-start"
                                     type="button"><svg class="w-4 h-4 ml-2 text-gray-400 hover:text-gray-500"
                                         aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"

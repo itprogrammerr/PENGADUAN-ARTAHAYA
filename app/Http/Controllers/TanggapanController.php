@@ -75,7 +75,7 @@ class TanggapanController extends Controller
             $tanggapan->save();
 
             $userIdFromPengaduans = Pengaduan::findOrfail($request->pengaduan_id);
-            $user = User::findOrFail($userIdFromPengaduans->user_id);
+            $user = User::where('uuid',$userIdFromPengaduans->user_uuid)->first();
             $this->sendEmail($user);
 
             Alert::success('Berhasil', 'Pengaduan berhasil ditanggapi');

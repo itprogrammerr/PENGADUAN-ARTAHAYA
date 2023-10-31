@@ -67,9 +67,9 @@
                             <select
                                 class="block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                 name="status">
-                                <option value="Belum di Proses">Belum di Proses</option>
-                                <option value="Sedang di Proses">Sedang di Proses</option>
-                                <option value="Selesai">Selesai</option>
+                                <option value="0">Belum di Proses</option>
+                                <option value="1">Sedang di Proses</option>
+                                <option value="2">Selesai</option>
 
                             </select>
                         </label>

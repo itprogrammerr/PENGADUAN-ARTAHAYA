@@ -18,7 +18,7 @@ class MasyarakatMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        if( Auth::user() && Auth::user()->roles == 'USER') {
+        if( Auth::user() && Auth::user()->roles === 1) {
             return $next($request);
         }
         // else if ( Auth::user() && Auth::user()->roles == 'ADMIN' ) {

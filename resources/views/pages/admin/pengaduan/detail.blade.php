@@ -70,20 +70,20 @@
                                 <td>Status </td>
                                 <td> : </td>
                                 <td>
-                                    @if ($item->status == 'Belum di Proses')
+                                    @if ($item->status === 0)
                                         <span
                                             class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
-                                            {{ $item->status }}
+                                            Belum di Proses
                                         </span>
-                                    @elseif ($item->status == 'Sedang di Proses')
+                                    @elseif ($item->status === 1)
                                         <span
                                             class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
-                                            {{ $item->status }}
+                                            Sedang di Proses
                                         </span>
                                     @else
                                         <span
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
-                                            {{ $item->status }}
+                                            Selesai
                                         </span>
                                     @endif
                                 </td>
@@ -95,7 +95,6 @@
                                     {{ $item->description }}
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                     <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">

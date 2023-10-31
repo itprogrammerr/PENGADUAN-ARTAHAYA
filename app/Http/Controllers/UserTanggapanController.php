@@ -39,7 +39,6 @@ class UserTanggapanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         try {
             $request->validate([
                 "pengaduan_id"  => "required",

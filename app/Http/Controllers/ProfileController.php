@@ -17,7 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data = User::where('id', Auth::user()->id)->first();
+        $data = User::where('uuid', Auth::user()->uuid)->first();
         return view('pages.masyarakat.profile', compact('data'));
     }
 
@@ -74,13 +74,12 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $profile = User::findOrFail($id);
-            $profile->nik = $request->nik;
-            $profile->name = $request->name;
-            $profile->email = $request->email;
-            $profile->phone = $request->phone;
-            $profile->password = Hash::make($request->password);
-
+            $profile            = User::where('uuid', $id)->first();
+            $profile->nik       = $request->nik;
+            $profile->name      = $request->name;
+            $profile->email     = $request->email;
+            $profile->phone     = $request->phone;
+            $profile->password  = Hash::make($request->password);
             $profile->save();
 
             Alert::success('Berhasil', 'Berhasil merubah data');

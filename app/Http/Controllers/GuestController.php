@@ -59,18 +59,16 @@ class GuestController extends Controller
                 }
                 return $randomString;
             }
-            
             $newUser->nik = generateRandomString($characters, $length);
-            
             while (User::where('nik', $newUser->nik)->exists()) {
                 $newUser->nik = generateRandomString($characters, $length);
             }
-            
+            $newUser->uuid = uniqid();
             $newUser->name = "Guest" . uniqid("",true);
             $newUser->email = $request->email;
             $newUser->phone = uniqid("",true);
             $newUser->password = Hash::make('12345678');
-            $newUser->roles = "USER";
+            $newUser->roles = 1;
             $newUser->save();
 
             $imageEXT = $request->file('image')->getClientOriginalName();
@@ -80,11 +78,10 @@ class GuestController extends Controller
             $path = $request->file('image')->move(public_path('file/laporan/image'), $fileimage);
 
             $laporan = new Pengaduan;
-            $laporan->user_nik = $newUser->nik;
-            $laporan->name = $newUser->name;
-            $laporan->user_id = $newUser->id;
+            $laporan->user_uuid = $newUser->uuid;
             $laporan->description = $request->description;
             $laporan->image = $fileimage;
+            $laporan->status = 0;
             $laporan->save();
 
             $this->sendEmail($newUser);
@@ -99,7 +96,10 @@ class GuestController extends Controller
             }
 
             if (array_key_exists('email', $errors)) {
-                Alert::error('Error', 'Email telah digunakan sebelumnya.');
+                Alert::error('Error', 'Email telah digunakan sebelumnya. ' . $errors);
+            }
+            if (array_key_exists('image', $errors)) {
+                Alert::error('Error', 'Ukuran gambar terlalu besar atau tipe file salah');
             }
 
             return back()->withErrors($errors);

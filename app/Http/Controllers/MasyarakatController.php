@@ -22,14 +22,14 @@ class MasyarakatController extends Controller
     public function index()
     {
         try {
-            $userNik = Auth::user()->nik;
-            $allPengaduans = Pengaduan::where('user_nik', $userNik)->count();
-            $allTanggapans = Tanggapan::whereHas('pengaduan', function ($query) use ($userNik) {
-                $query->where('user_nik', $userNik);
+            $uuid = Auth::user()->uuid;
+            $allPengaduans = Pengaduan::where('user_uuid', $uuid)->count();
+            $allTanggapans = Tanggapan::whereHas('pengaduan', function ($query) use ($uuid) {
+                $query->where('user_uuid', $uuid);
             })->count();
-            $allPendings = Pengaduan::where("user_nik", $userNik)->where('status', 'Belum di Proses')->count();
-            $allProcess = Pengaduan::where("user_nik", $userNik)->where('status', 'Sedang di Proses')->count();
-            $allSelesai = Pengaduan::where("user_nik", $userNik)->where('status', 'Selesai')->count();
+            $allPendings = Pengaduan::where("user_uuid", $uuid)->where('status','=', 0)->count();
+            $allProcess = Pengaduan::where("user_uuid", $uuid)->where('status','=', 1)->count();
+            $allSelesai = Pengaduan::where("user_uuid", $uuid)->where('status','=', 2)->count();
             return view('pages.masyarakat.index', compact('allPengaduans', 'allTanggapans', 'allPendings', 'allProcess', 'allSelesai'));
         } catch (\Exception $e) {
             Alert::error('Error', $e->getMessage());
@@ -68,9 +68,7 @@ class MasyarakatController extends Controller
             $path       = $request->file('image')->move(public_path('file/laporan/image'), $fileimage);
 
             $laporan                = new Pengaduan;
-            $laporan->user_nik      = Auth::user()->nik;
-            $laporan->name          = Auth::user()->name;
-            $laporan->user_id       = Auth::user()->id;
+            $laporan->user_uuid      = Auth::user()->uuid;
             $laporan->description   = $request->description;
             $laporan->image         = $fileimage;
             $laporan->save();
@@ -116,7 +114,6 @@ class MasyarakatController extends Controller
         $item = Pengaduan::with([
             'details', 'user'
         ])->findOrFail($id);
-
         $tangap = Tanggapan::where('pengaduan_id', $id)->get();
 
         return view('pages.masyarakat.show', [

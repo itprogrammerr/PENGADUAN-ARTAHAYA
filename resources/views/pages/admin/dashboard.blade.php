@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            @if (Auth::user()->roles == 'ADMIN')
+            @if (Auth::user()->roles ===0)
                 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                     <!-- Card -->
                     <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

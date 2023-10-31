@@ -79,7 +79,12 @@
                                         {{ $petugas->email }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{ $petugas->roles }}
+                                        {{-- {{ $petugas->roles }} --}}
+                                        @if ($petugas->roles===0)
+                                            Administrator
+                                        @else
+                                            Petugas
+                                        @endif
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         <div class="flex items-center space-x-4 text-sm">

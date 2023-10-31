@@ -21,7 +21,7 @@ class PetugasController extends Controller
      */
     public function index(Request $request)
     {
-        if (Auth::user()->roles != 'ADMIN') {
+        if (Auth::user()->roles !== 0) {
             Alert::warning('Peringatan', 'Maaf Anda tidak punya akses');
             return back();
         }
@@ -39,8 +39,8 @@ class PetugasController extends Controller
         }
 
         $query->where(function ($q) {
-            $q->where('roles', 'PETUGAS')
-                ->orWhere('roles', 'ADMIN');
+            $q->where('roles','=', 0)
+                ->orWhere('roles','=', 2);
         });
 
         $data = $query->paginate(10);
@@ -78,12 +78,13 @@ class PetugasController extends Controller
             $user = $request->all();
 
             $user = User::create([
-                'nik' => $request->nik,
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'roles' => $request->roles,
-                'password' => Hash::make($request->password),
+                'uuid'      => uniqid(),
+                'nik'       => $request->nik,
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'phone'     => $request->phone,
+                'roles'     => $request->roles,
+                'password'  => Hash::make($request->password),
 
             ]);
 

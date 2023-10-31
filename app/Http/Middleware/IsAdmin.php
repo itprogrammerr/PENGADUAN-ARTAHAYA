@@ -17,11 +17,11 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if( Auth::user() && Auth::user()->roles == 'ADMIN') {
+        if( Auth::user() && Auth::user()->roles === 0) {
 
             return $next($request);
         } 
-        else if( Auth::user() && Auth::user()->roles == 'PETUGAS') {
+        else if( Auth::user() && Auth::user()->roles === 3) {
         
             return $next($request);
         }

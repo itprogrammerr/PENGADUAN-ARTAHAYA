@@ -81,30 +81,30 @@
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{ $item->name }}
+                                        {{ $item->username }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{ $item->created_at->format('l, d F Y - H:i:s') }}
                                     </td>
-                                    @if ($item->status == 'Belum di Proses')
+                                    @if ($item->status === 0)
                                         <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
-                                                {{ $item->status }}
+                                                Belum di Proses
                                             </span>
                                         </td>
-                                    @elseif ($item->status == 'Sedang di Proses')
+                                    @elseif ($item->status === 1)
                                         <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
-                                                {{ $item->status }}
+                                                Sedang di Proses
                                             </span>
                                         </td>
                                     @else
                                         <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
-                                                {{ $item->status }}
+                                                Selesai
                                             </span>
                                         </td>
                                     @endif

@@ -13,11 +13,11 @@
                 @csrf
                 <div>
                     <x-label for="nik" :value="__('NIK')" />
-                    {{-- <x-input id="nik" class="block mt-1 w-full" type="text" name="nik" :value="old('nik')"
-                        required autofocus /> --}}
-                    <input type="text" pattern="^-?\d+\.?\d*$"
+                    <input type="number"
+                        pattern="(1[1-9]|21|[37][1-6]|5[1-3]|6[1-5]|[89][12])\d{2}\d{2}([04][1-9]|[1256][0-9]|[37][01])(0[1-9]|1[0-2])\d{2}\d{4}"
                         oninput="if(this.value.length > 16) this.value = this.value.slice(0, 16)"
                         class="block mt-1 w-full" name="nik" placeholder="" required autofocus>
+
                 </div>
                 <div class="mt-4">
                     <x-label for="name" :value="__('Name')" />
@@ -31,8 +31,11 @@
                 </div>
                 <div class="mt-4">
                     <x-label for="phone" :value="__('No. HP')" />
-                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
-                        required />
+                    {{-- <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
+                        required /> --}}
+                    <input type="number" pattern="^[0-9]{12}$"
+                        oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12)" name="phone"
+                        id="phone" value="{{ $data->phone }}" class="block mt-1 w-full">
                 </div>
                 <div class="mt-4">
                     <x-label for="password" :value="__('Password')" />

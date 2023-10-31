@@ -40,6 +40,7 @@ class AdminProfileController extends Controller
             ]);
 
             $user = new User();
+            $user->uuid = uniqid();
             $user->nik = $request->nik;
             $user->name = $request->name;
             $user->email = $request->email;

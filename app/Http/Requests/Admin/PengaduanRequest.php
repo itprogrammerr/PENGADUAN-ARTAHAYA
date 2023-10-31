@@ -24,8 +24,9 @@ class PengaduanRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'user_id' => 'required|exists:users,id',
+            // 'name' => 'required|max:255',
+            // 'user_id' => 'required|exists:users,id',
+            // 'description' => 'required',
             'description' => 'required',
             'image' => 'required',
             'status' => 'required'

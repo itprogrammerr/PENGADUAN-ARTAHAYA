@@ -17,6 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'uuid',
         'nik',
         'name',
         'email',
@@ -46,6 +47,6 @@ class User extends Authenticatable
 
     public function pengaduan()
     {
-        return $this->hasMany(Pengaduan::class, 'user_nik', 'nik');
+        return $this->hasMany(Pengaduan::class, 'user_uuid', 'uuid');
     }
 }

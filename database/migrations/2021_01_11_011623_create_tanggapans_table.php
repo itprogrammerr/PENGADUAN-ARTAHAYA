@@ -15,10 +15,13 @@ class CreateTanggapansTable extends Migration
     {
         Schema::create('tanggapans', function (Blueprint $table) {
             $table->id();
-            $table->integer('pengaduan_id');
+            $table->unsignedBigInteger('pengaduan_id');
             $table->string('tanggapan', 255);
             $table->integer('petugas_id')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
+            
+            $table->foreign('pengaduan_id')->references('id')->on('pengaduans'); 
         });
     }
 

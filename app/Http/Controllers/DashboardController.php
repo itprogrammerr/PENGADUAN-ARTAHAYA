@@ -12,13 +12,13 @@ class DashboardController extends Controller
     public function index() {
         return view('pages.admin.dashboard',[
             'pengaduan' => Pengaduan::count(),
-            'user' => User::where('roles','=', 'USER')->count(),
-            'petugas' => User::where('roles', '=', 'PETUGAS')->count(),
-            'admin' => User::where('roles', '=', 'ADMIN')->count(),
+            'user' => User::where('roles','=', 1)->count(),
+            'petugas' => User::where('roles', '=', 3)->count(),
+            'admin' => User::where('roles', '=', 1)->count(),
             'tanggapan' => Tanggapan::count(),
-            'pending' => Pengaduan::where('status', 'Belum di Proses')->count(),
-            'process' => Pengaduan::where('status', 'Sedang di Proses')->count(),
-            'success' => Pengaduan::where('status', 'Selesai')->count(),
+            'pending' => Pengaduan::where('status','=', '0')->count(),
+            'process' => Pengaduan::where('status','=', '1')->count(),
+            'success' => Pengaduan::where('status','=', '2')->count(),
         ]);
     }
 }

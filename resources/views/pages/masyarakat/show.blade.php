@@ -11,7 +11,7 @@
     </style>
 @endsection
 @section('title')
-    Detail Laporan
+    Detail Pengaduan
 @endsection
 
 @section('content')
@@ -33,48 +33,48 @@
 
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
-                    @foreach ($item->details as $i)
+                    {{-- @foreach ($item->user as $i) --}}
                         <table
                             class="w-full text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 p-3">
                             <tbody>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Nama </td>
                                     <td> : </td>
-                                    <td>{{ $i->name }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>NIK </td>
                                     <td> : </td>
-                                    <td>{{ $i->user_nik }}</td>
+                                    <td>{{ $item->user->nik }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>No. Telepone </td>
                                     <td> : </td>
-                                    <td>{{ $i->user->phone }}</td>
+                                    <td>{{ $item->user->phone }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Tanggal </td>
                                     <td> : </td>
-                                    <td>{{ $i->created_at->format('l, d F Y - H:i:s') }}</td>
+                                    <td>{{ $item->details->created_at->format('l, d F Y - H:i:s') }}</td>
                                 </tr>
                                 <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
                                     <td>Status </td>
                                     <td> : </td>
                                     <td>
-                                        @if ($item->status == 'Belum di Proses')
+                                        @if ($item->details->status === 0)
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
-                                                {{ $item->status }}
+                                                Belum di Proses
                                             </span>
-                                        @elseif ($item->status == 'Sedang di Proses')
+                                        @elseif ($item->details->status === 1)
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
-                                                {{ $item->status }}
+                                                Sedang di Proses
                                             </span>
                                         @else
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
-                                                {{ $item->status }}
+                                                Selesai
                                             </span>
                                         @endif
                                     </td>
@@ -83,7 +83,7 @@
                                     <td>Deskripsi </td>
                                     <td> : </td>
                                     <td>
-                                        {{ $i->description }}
+                                        {{ $item->details->description }}
                                     </td>
                                 </tr>
                                 {{-- <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
@@ -95,18 +95,17 @@
                                             loading="lazy" />
                                     </td>
                                 </tr> --}}
-
                             </tbody>
                         </table>
                         <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">
                             <div class="text-center items-center justify-center flex-1 image-container">
                                 <h1 class="mb-8 font-semibold">Bukti</h1>
                                 <img style="max-width: 50%; height:auto"
-                                    src="{{ asset('file/laporan') }}/image/{{ $item->image }}" alt=""
+                                    src="{{ asset('file/laporan') }}/image/{{ $item->details->image }}" alt=""
                                     loading="lazy" />
                             </div>
                         </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                     <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400   dark:bg-gray-800">
                         <div class="text-center flex-1">
                             <div class="flex items-center justify-between mb-4">

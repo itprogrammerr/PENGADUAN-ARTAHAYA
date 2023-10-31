@@ -41,12 +41,13 @@
 
                 <form action="{{ route('adminprofile.store') }}" method="post" class="max-w-md mx-auto mt-4">
                     @csrf
-                    <input type="hidden" name="roles" value="ADMIN">
+                    <input type="hidden" name="roles" value="0">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="mb-4 mr-4">
                             <label for="nik"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200">NIK:</label>
-                            <input type="text" pattern="^-?\d+\.?\d*$"
+                            <input type="number"
+                                pattern="(1[1-9]|21|[37][1-6]|5[1-3]|6[1-5]|[89][12])\d{2}\d{2}([04][1-9]|[1256][0-9]|[37][01])(0[1-9]|1[0-2])\d{2}\d{4}"
                                 oninput="if(this.value.length > 16) this.value = this.value.slice(0, 16)"
                                 class="mt-1 p-2 border rounded-md w-full" name="nik"
                                 placeholder="angka NIK(16 digit)" required autofocus>
@@ -66,8 +67,11 @@
                         <div class="mb-4 mr-4">
                             <label for="phone"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200">Phone:</label>
-                            <input type="number" name="phone" id="phone"
-                                class="mt-1 p-2 border rounded-md w-full">
+                            {{-- <input type="number" name="phone" id="phone"
+                                class="mt-1 p-2 border rounded-md w-full"> --}}
+                            <input type="number" pattern="^[0-9]{12}$"
+                                oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12)" name="phone"
+                                id="phone"  class="mt-1 p-2 border rounded-md w-full">
                         </div>
                         <div class="mb-4 mr-4">
                             <label for="password"

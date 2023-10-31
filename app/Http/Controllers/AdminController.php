@@ -41,7 +41,7 @@ class AdminController extends Controller
                     ->orWhere('phone', 'like', $searchTerm);
             });
         }
-        $query->where('roles', '=', 'USER');
+        $query->where('roles', '=', 1);
         $data = $query->paginate(10);
         return view('pages.admin.masyarakat', compact('data'));
     }
@@ -52,9 +52,7 @@ class AdminController extends Controller
         if ($request->has('search')) {
             $searchTerm = '%' . $request->search . '%';
             $query->where(function ($q) use ($searchTerm) {
-                $q->orWhere('user_nik', 'like', $searchTerm)
-                ->orWhere('name', 'like', $searchTerm)
-                ->orWhere('user_id', 'like', $searchTerm)
+                $q->orWhere('user_uuid', 'like', $searchTerm)
                 ->orWhere('description', 'like', $searchTerm)
                 ->orWhere('image', 'like', $searchTerm)
                 ->orWhere('status', 'like', $searchTerm);
