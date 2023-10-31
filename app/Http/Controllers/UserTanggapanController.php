@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use App\Models\Pengaduan;
 use App\Models\Tanggapan;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
-class TanggapanController extends Controller
+class UserTanggapanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,16 +42,14 @@ class TanggapanController extends Controller
         // dd($request->all());
         try {
             $request->validate([
-                'pengaduan_id'  => 'required',
-                'tanggapan'     => 'required',
-                'image'         => 'mimes:png,jpg|max:2048'
+                "pengaduan_id"  => "required",
+                "tanggapan"     => "required",
+                "image"         => "mimes:png,jpg|max:2048",
             ]);
-
-            $tanggapan = new Tanggapan();
-
-            $tanggapan->pengaduan_id    = $request->pengaduan_id;
-            $tanggapan->tanggapan       = $request->tanggapan;
-            $tanggapan->petugas_id      = Auth::user()->id;
+            $userTanggapan = new Tanggapan();
+            $userTanggapan->pengaduan_id = $request->pengaduan_id;
+            $userTanggapan->tanggapan = $request->tanggapan;
+            $userTanggapan->petugas_id = 0;
 
             if ($request->hasFile('image')) {
                 $imageEXT = $request->file('image')->getClientOriginalName();
@@ -68,29 +61,39 @@ class TanggapanController extends Controller
                 $tanggapan->image = $fileimage;
             }
 
-            DB::table('pengaduans')->where('id', $request->pengaduan_id)->update([
-                'status' => $request->status,
-            ]);
-
-            $tanggapan->save();
-
-            $userIdFromPengaduans = Pengaduan::findOrfail($request->pengaduan_id);
-            $user = User::findOrFail($userIdFromPengaduans->user_id);
-            $this->sendEmail($user);
+            $userTanggapan->save();
+            $pengaduan_data = Pengaduan::where('id', $request->pengaduan_id)->first();
+            $this->sendEmail($pengaduan_data);
 
             Alert::success('Berhasil', 'Pengaduan berhasil ditanggapi');
             return redirect()->back();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->errors();
+
+            if (array_key_exists('pengduan_id', $errors)) {
+                Alert::error('Error', 'Pengaduan ID tidak ditemukan.');
+            }
+
+            if (array_key_exists('tanggapan', $errors)) {
+                Alert::error('Error', 'Tanggapan terlalu panjang');
+            }
+
+            if (array_key_exists('image', $errors)) {
+                Alert::error('Error', 'Gagal dalam melakukan upload gambar');
+            }
+
+            return back()->withErrors($errors);
         } catch (\Exception $e) {
             Alert::error('Error', $e->getMessage());
-            return redirect()->back();
+            return back();
         }
     }
 
-    private function sendEmail(User $user)
+    private function sendEmail(Pengaduan $pengaduan_data)
     {
-        Mail::send('emails.notif', ['user' => $user], function ($message) use ($user) {
-            $message->from('Pengaduan@bankarthaya.com', 'Arthaya Support');
-            $message->to($user->email, 'Admin');
+        Mail::send('emails.notifToAdmin', ['pengaduan' => $pengaduan_data], function ($message) use ($pengaduan_data) {
+            $message->from('userpengaduan@bankarthaya.com', 'Arthaya Support');
+            $message->to('pengaduan@bankarthaya.com', 'Admin');
             $message->subject('Notifikasi Update Pengaduan');
         });
     }
@@ -103,13 +106,7 @@ class TanggapanController extends Controller
      */
     public function show($id)
     {
-        $item = Pengaduan::with([
-            'details', 'user'
-        ])->findOrFail($id);
-
-        return view('pages.admin.tanggapan.add', [
-            'item' => $item
-        ]);
+        //
     }
 
     /**
@@ -141,7 +138,6 @@ class TanggapanController extends Controller
             $tanggapan = Tanggapan::findOrFail($id);
             $tanggapan->pengaduan_id = $request->pengaduan_id;
             $tanggapan->tanggapan = $request->tanggapan;
-            $tanggapan->petugas_id = Auth::user()->id;
 
             if ($request->hasFile('image')) {
                 $oldImage = $tanggapan->image;
@@ -156,10 +152,6 @@ class TanggapanController extends Controller
                 $path = $request->file('image')->move(public_path('file/tanggapan'), $fileimage);
                 $tanggapan->image = $fileimage;
             }
-
-            DB::table('pengaduans')->where('id', $request->pengaduan_id)->update([
-                'status' => $request->status,
-            ]);
 
             $tanggapan->save();
 

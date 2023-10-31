@@ -46,11 +46,29 @@ class GuestController extends Controller
                 'image' => ['required', 'max:2048', 'mimes:jpg,jpeg,png'],
             ]);
 
+            $characters = '0123456789';
+            $length = 16;
+
             $newUser = new User;
-            $newUser->nik = intval(substr(uniqid("", true), 0, 16));
-            $newUser->name = "Guest" . substr(uniqid(), 0, 12);
+
+            function generateRandomString($characters, $length) {
+                $randomString = '';
+                $charactersLength = strlen($characters);
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                return $randomString;
+            }
+            
+            $newUser->nik = generateRandomString($characters, $length);
+            
+            while (User::where('nik', $newUser->nik)->exists()) {
+                $newUser->nik = generateRandomString($characters, $length);
+            }
+            
+            $newUser->name = "Guest" . uniqid("",true);
             $newUser->email = $request->email;
-            $newUser->phone = intval(substr(uniqid(), 0, 12));
+            $newUser->phone = uniqid("",true);
             $newUser->password = Hash::make('12345678');
             $newUser->roles = "USER";
             $newUser->save();

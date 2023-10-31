@@ -15,16 +15,14 @@ class CreatePengaduansTable extends Migration
     {
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
-
-            $table->string('user_nik');
-            $table->string('name');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('users_uuid');
             $table->text('description');
             $table->string('image');
-            $table->integer('status')->default(1);
+            $table->string('status')->default("Belum di Proses");
             $table->softDeletes();
             
             $table->timestamps();
+            $table->foreign('uuid')->references('uuid')->on('users');
         });
     }
 
