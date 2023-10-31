@@ -77,9 +77,21 @@ class MasyarakatController extends Controller
 
             Alert::success('Berhasil', 'Pengaduan terkirim');
             return redirect()->back();
+        } catch (\Illuminate\Validation\ValidationExceptionception $e) {
+            $errors = $e->errors();
+
+            if (array_key_exists('description', $errors)) {
+                Alert::error('Error', 'Deskripsi terlalu panjang');
+            }
+
+            if (array_key_exists('image', $errors)) {
+                Alert::error('Error', 'Image gagal di inputkan ');
+            }
+
+            return back()->withErrors($errors);
         } catch (\Exception $e) {
-            Alert::error("Gagal", "Periksa kembali data Input anda");
-            return redirect()->back();
+            Alert::error('Error', $e->getMessage());
+            return back();
         }
     }
 

@@ -58,7 +58,7 @@
                                         {{ $item->description }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                        {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
+                                        {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y H:i:s') }}
                                     </td>
                                     @if ($item->status == 'Belum di Proses')
                                         <td class="px-4 py-3 text-xs">

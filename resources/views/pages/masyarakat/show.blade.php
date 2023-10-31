@@ -109,27 +109,50 @@
                     @endforeach
                     <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400   dark:bg-gray-800">
                         <div class="text-center flex-1">
-                            <h1 class="mb-8 font-semibold">Tanggapan</h1>
+                            <div class="flex items-center justify-between mb-4">
+                                <h1 class="mb-8 font-semibold">Tanggapan</h1>
+                                @include('pages.masyarakat.modal.addTanggapanUser')
+                            </div>
                             <div class="text-gray-800 dark:text-gray-400">
                                 @if (empty($tangap))
                                     Belum ada tanggapan
                                 @else
                                     @foreach ($tangap as $t)
-                                        <div class="flex justify-end mb-4">
-                                            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg max-w-sm relative">
-                                                <div class="mb-2">{{ $t->tanggapan }}</div>
-                                                @unless (empty($t->image))
-                                                    <div class="mb-2">
-                                                        <img class="max-w-1/2 mx-auto h-auto"
-                                                            src="{{ asset('file/tanggapan') }}/{{ $t->image }}"
-                                                            alt="" loading="lazy" />
+                                        @if ($t->petugas_id === 0)
+                                            <div class="flex justify-start mb-4" style="max-width:50%">
+                                                <div class="bg-gray-100 text-black px-4 py-2 rounded-lg ">
+                                                    <div class="mb-2">{{ $t->tanggapan }}</div>
+                                                    @unless (empty($t->image))
+                                                        <div class="mb-2" style="display: inline-block; ">
+                                                            <img src="{{ asset('file/tanggapan') }}/{{ $t->image }}" alt="" loading="lazy"/>
+                                                        </div>
+                                                    @endunless
+                                                    <div class="text-xs text-gray-600 mb-1">
+                                                        {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
                                                     </div>
-                                                @endunless
-                                                <div class="text-xs text-gray-600 mb-1">
-                                                    {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
+                                                    <div class="flex justify-between items-center mt-2">
+                                                        @include('pages.masyarakat.modal.editTanggapanUser')
+                                                        @include('pages.masyarakat.modal.deleteTanggapanUser')
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <div class="flex justify-end mb-4">
+                                                <div class="bg-blue-500 text-white px-4 py-2 rounded-lg max-w-sm relative">
+                                                    <div class="mb-2">{{ $t->tanggapan }}</div>
+                                                    @unless (empty($t->image))
+                                                        <div class="mb-2">
+                                                            <img class="max-w-1/2 mx-auto h-auto"
+                                                                src="{{ asset('file/tanggapan') }}/{{ $t->image }}"
+                                                                alt="" loading="lazy" />
+                                                        </div>
+                                                    @endunless
+                                                    <div class="text-xs text-gray-600 mb-1">
+                                                        {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     @endforeach
                                 @endif
                             </div>

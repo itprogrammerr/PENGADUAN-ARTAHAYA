@@ -43,69 +43,69 @@
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
                     {{-- @foreach ($item as $i) --}}
-                        <table
-                            class="w-full text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 p-3">
-                            <tbody>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>Nama </td>
-                                    <td> : </td>
-                                    <td>{{ $item->username }}</td>
-                                </tr>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>NIK </td>
-                                    <td> : </td>
-                                    <td>{{ $item->usernik }}</td>
-                                </tr>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>No. Telephone </td>
-                                    <td> : </td>
-                                    <td>{{ $item->userphone }}</td>
-                                </tr>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>Tanggal </td>
-                                    <td> : </td>
-                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('l, d F Y - H:i:s') }}</td>
-                                </tr>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>Status </td>
-                                    <td> : </td>
-                                    <td>
-                                        @if ($item->status == 'Belum di Proses')
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
-                                                {{ $item->status }}
-                                            </span>
-                                        @elseif ($item->status == 'Sedang di Proses')
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
-                                                {{ $item->status }}
-                                            </span>
-                                        @else
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
-                                                {{ $item->status }}
-                                            </span>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
-                                    <td>Deskripsi </td>
-                                    <td> : </td>
-                                    <td>
-                                        {{ $item->description }}
-                                    </td>
-                                </tr>
+                    <table
+                        class="w-full text-gray-800 text-sm font-semibold px-4 py-4 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 p-3">
+                        <tbody>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>Nama </td>
+                                <td> : </td>
+                                <td>{{ $item->username }}</td>
+                            </tr>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>NIK </td>
+                                <td> : </td>
+                                <td>{{ $item->usernik }}</td>
+                            </tr>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>No. Telephone </td>
+                                <td> : </td>
+                                <td>{{ $item->userphone }}</td>
+                            </tr>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>Tanggal </td>
+                                <td> : </td>
+                                <td>{{ \Carbon\Carbon::parse($item->created_at)->format('l, d F Y - H:i:s') }}</td>
+                            </tr>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>Status </td>
+                                <td> : </td>
+                                <td>
+                                    @if ($item->status == 'Belum di Proses')
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
+                                            {{ $item->status }}
+                                        </span>
+                                    @elseif ($item->status == 'Sedang di Proses')
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
+                                            {{ $item->status }}
+                                        </span>
+                                    @else
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
+                                            {{ $item->status }}
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="py-10 border-gray-200 hover:bg-gray-100 hover:text-black">
+                                <td>Deskripsi </td>
+                                <td> : </td>
+                                <td>
+                                    {{ $item->description }}
+                                </td>
+                            </tr>
 
-                            </tbody>
-                        </table>
-                        <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">
-                            <div class="flex-1 flex justify-center items-center flex-col">
-                                <h1 class="mb-8 font-semibold">Bukti</h1>
-                                <img class="mb-4" style="max-width: 50%; height:auto;"
-                                    src="{{ asset('file/laporan') }}/image/{{ $item->image }}" alt=""
-                                    loading="lazy" />
-                            </div>
+                        </tbody>
+                    </table>
+                    <div class="px-4 py-3 mb-2 flex bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800">
+                        <div class="flex-1 flex justify-center items-center flex-col">
+                            <h1 class="mb-8 font-semibold">Bukti</h1>
+                            <img class="mb-4" style="max-width: 50%; height:auto;"
+                                src="{{ asset('file/laporan') }}/image/{{ $item->image }}" alt=""
+                                loading="lazy" />
                         </div>
+                    </div>
                     {{-- @endforeach --}}
                 </div>
             </div>
@@ -121,8 +121,9 @@
                             Belum ada tanggapan
                         @else
                             @foreach ($tangap as $t)
-                                <div class="flex justify-end mb-4">
-                                    <div class="bg-blue-500 text-white px-4 py-2 rounded-lg max-w-sm relative">
+                                @if ($t->petugas_id === 0)
+                                <div class="flex justify-start mb-4">
+                                    <div class="bg-gray-100 text-black px-4 py-2 rounded-lg max-w-sm relative">
                                         <div class="mb-2">{{ $t->tanggapan }}</div>
                                         @unless (empty($t->image))
                                             <div class="mb-2">
@@ -132,14 +133,35 @@
                                             </div>
                                         @endunless
                                         <div class="text-xs text-gray-600 mb-1">
-                                            {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }}
+                                            {{-- {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans() }} --}}
+                                            {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y H:i:s') }}
                                         </div>
-                                        <div class="flex justify-between items-center mt-2">
-                                            @include('pages.admin.pengaduan.modal.editTanggapan')
+                                        <div class="flex justify-end items-center mt-2">
                                             @include('pages.admin.pengaduan.modal.deleteTanggapan')
                                         </div>
                                     </div>
                                 </div>
+                                @else
+                                    <div class="flex justify-end mb-4">
+                                        <div class="bg-blue-500 text-white px-4 py-2 rounded-lg max-w-sm relative">
+                                            <div class="mb-2">{{ $t->tanggapan }}</div>
+                                            @unless (empty($t->image))
+                                                <div class="mb-2">
+                                                    <img class="max-w-1/2 mx-auto h-auto"
+                                                        src="{{ asset('file/tanggapan') }}/{{ $t->image }}" alt=""
+                                                        loading="lazy" />
+                                                </div>
+                                            @endunless
+                                            <div class="text-xs text-gray-800 mb-1">
+                                                {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y H:i:s') }}
+                                            </div>
+                                            <div class="flex justify-between items-center mt-2">
+                                                @include('pages.admin.pengaduan.modal.editTanggapan')
+                                                @include('pages.admin.pengaduan.modal.deleteTanggapan')
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             @endforeach
                         @endif
                     </div>

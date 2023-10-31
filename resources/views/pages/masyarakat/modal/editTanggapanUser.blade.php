@@ -43,7 +43,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('tanggapan.update', $t->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('usertanggapan.update', $t->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="pengaduan_id" value="{{ $t->pengaduan_id }} ">
@@ -53,36 +53,6 @@
                             <textarea
                                 class="block w-full mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                 rows="8" type="text" placeholder="Isi Tanggapan Anda" name="tanggapan">{{ $t->tanggapan }}</textarea>
-                        </label>
-                        <label class="block mt-4 text-sm">
-                            <span class="text-gray-700 dark:text-gray-400">Status</span>
-
-                            <select
-                                class="block w-full text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                name="status">
-                                @if ($t->status === 'Belum di Proses')
-                                    <option value="Belum di Proses" selected>Belum di Proses</option>
-                                    <option value="Sedang di Proses">Sedang di Proses</option>
-                                    <option value="Selesai">Selesai</option>
-                                    <option value="-"></option>
-                                @elseif($t->status === 'Sedang di Proses')
-                                    <option value="Belum di Proses">Belum di Proses</option>
-                                    <option value="Sedang di Proses" selected>Sedang di Proses</option>
-                                    <option value="Selesai">Selesai</option>
-                                    <option value="-"></option>
-                                @elseif($t->status === 'Selesai')
-                                    <option value="Belum di Proses">Belum di Proses</option>
-                                    <option value="Sedang di Proses">Sedang di Proses</option>
-                                    <option value="Selesai" selected>Selesai</option>
-                                    <option value="-"></option>
-                                @else
-                                    <option value="Belum di Proses">Belum di Proses</option>
-                                    <option value="Sedang di Proses">Sedang di Proses</option>
-                                    <option value="Selesai">Selesai</option>
-                                    <option value="-" selected></option>
-                                @endif
-
-                            </select>
                         </label>
 
                         <label for="image" class="block mt-4 text-sm">
