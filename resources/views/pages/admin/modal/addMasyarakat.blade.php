@@ -20,8 +20,8 @@
                     Tambah Data</h5>
                 <button type="button" class="z-50 cursor-pointer"
                     @click="insertModal = false; localStorage.setItem('insertModal', false)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="#cccccc">
+                    <svg xmlns="http:
+                        fill="none" stroke="
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d=" M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -47,9 +47,6 @@
                         <div class="mb-4 mr-4">
                             <label for="nik"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200">NIK:</label>
-                            {{-- <input type="number" name="nik" id="nik"
-                                class="mt-1 p-2 border rounded-md w-full"
-                                placeholder="Masukkan NIK (maksimal 16 digit)"> --}}
                             <input type="number"
                                 pattern="(1[1-9]|21|[37][1-6]|5[1-3]|6[1-5]|[89][12])\d{2}\d{2}([04][1-9]|[1256][0-9]|[37][01])(0[1-9]|1[0-2])\d{2}\d{4}"
                                 oninput="if(this.value.length > 16) this.value = this.value.slice(0, 16)"
@@ -71,8 +68,6 @@
                         <div class="mb-4 mr-4">
                             <label for="phone"
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-200">Phone:</label>
-                            {{-- <input type="number" name="phone" id="phone"
-                                class="mt-1 p-2 border rounded-md w-full"> --}}
                             <input type="number" pattern="^[0-9]{12}$"
                                 oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12)" name="phone"
                                 id="phone" class="mt-1 p-2 border rounded-md w-full">
@@ -86,7 +81,7 @@
                                 <button type="button"
                                     class="absolute inset-y-0 right-0 px-3 flex items-center focus:outline-none"
                                     onclick="togglePasswordVisibility('password')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    <svg xmlns="http:
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>

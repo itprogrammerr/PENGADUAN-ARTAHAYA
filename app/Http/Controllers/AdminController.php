@@ -59,7 +59,6 @@ class AdminController extends Controller
             });
         }
         $data = $query->paginate(10);
-        // $pengaduan = Pengaduan::all();
 
         return view('pages.admin.laporan', [
             'pengaduan' => $data,

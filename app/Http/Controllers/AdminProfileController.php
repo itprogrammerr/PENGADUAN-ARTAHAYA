@@ -10,23 +10,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = User::where('id', Auth::user()->id)->first();
         return view('pages.admin.profile', compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try {
@@ -69,13 +58,6 @@ class AdminProfileController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         try {
@@ -89,7 +71,6 @@ class AdminProfileController extends Controller
             $profile->save();
 
             Alert::success('Berhasil', 'Berhasil merubah data');
-            // return redirect()->route('adminprofile.index');
             return back();
         } catch (\Exception $e) {
             Alert::error('error', $e->getMessage());
@@ -97,12 +78,6 @@ class AdminProfileController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {
