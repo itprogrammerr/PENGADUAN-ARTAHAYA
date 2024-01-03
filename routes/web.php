@@ -8,7 +8,6 @@ Route::get('/', function () {
 
 Route::resource('guest', "GuestController");
 
-
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function () {
