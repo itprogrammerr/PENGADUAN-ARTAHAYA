@@ -17,8 +17,7 @@ class IsAdmin
         else if( Auth::user() && Auth::user()->roles == 3) {
             return $next($request);
         }else {
-            // return redirect('user');
-            dd('else');
+            return redirect('user');
         }
     }
 }
