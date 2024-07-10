@@ -68,7 +68,7 @@ class GuestController extends Controller
 
             $this->sendEmail($newUser);
 
-            Alert::success('Berhasil', 'Pengaduan terkirim');
+            Alert::success('Berhasil', 'Pengaduan terkirim, gunakan email dan password ini untuk login. Email : ' . $newUser->email . ' Password : 12345678');
             return redirect()->back();
         } catch (\Illuminate\Validation\ValidationException $e) {
             $errors = $e->errors();
