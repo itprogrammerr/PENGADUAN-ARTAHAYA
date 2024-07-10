@@ -41,7 +41,7 @@ class AdminController extends Controller
                     ->orWhere('phone', 'like', $searchTerm);
             });
         }
-        $query->where('roles', '=', 1);
+        // $query->where('roles', '=', 1);
         $data = $query->paginate(10);
         return view('pages.admin.masyarakat', compact('data'));
     }

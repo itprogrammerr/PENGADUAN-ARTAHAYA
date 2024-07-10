@@ -10,14 +10,13 @@ class IsAdmin
 {
     public function handle(Request $request, Closure $next)
     {
+        // dd( Auth::user());
         if( Auth::user() && Auth::user()->roles === 0) {
-
             return $next($request);
         } 
         else if( Auth::user() && Auth::user()->roles === 3) {
-        
             return $next($request);
-        }
-        return redirect('user');
+        }else {
+            return redirect('user');}
     }
 }
