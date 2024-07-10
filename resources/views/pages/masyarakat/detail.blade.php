@@ -60,14 +60,14 @@
                                     <td class="px-4 py-3 text-sm">
                                         {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y H:i:s') }}
                                     </td>
-                                    @if ($item->status === 0)
+                                    @if ($item->status == 0)
                                         <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
                                                 Belum di proses
                                             </span>
                                         </td>
-                                    @elseif ($item->status === 1)
+                                    @elseif ($item->status == 1)
                                         <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
