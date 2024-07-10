@@ -10,8 +10,8 @@ class MasyarakatMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        dd( Auth::user()->roles);
-        if( Auth::user() && Auth::user()->roles === 1) {
+        // dd( Auth::user()->roles);
+        if( Auth::user() && Auth::user()->roles == 1) {
             return $next($request);
         }
         return redirect('/');
