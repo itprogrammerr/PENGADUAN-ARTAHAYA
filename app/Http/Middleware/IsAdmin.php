@@ -10,7 +10,7 @@ class IsAdmin
 {
     public function handle(Request $request, Closure $next)
     {
-        // dd( Auth::user());
+        dd( Auth::user()->roles);
         if( Auth::user() && Auth::user()->roles == 0) {
             return $next($request);
         } 
