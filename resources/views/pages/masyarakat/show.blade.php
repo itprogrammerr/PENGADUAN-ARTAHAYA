@@ -61,12 +61,12 @@
                                     <td>Status </td>
                                     <td> : </td>
                                     <td>
-                                        @if ($item->details->status === 0)
+                                        @if ($item->details->status == 0)
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-md dark:text-red-100 dark:bg-red-700">
                                                 Belum di Proses
                                             </span>
-                                        @elseif ($item->details->status === 1)
+                                        @elseif ($item->details->status == 1)
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
                                                 Sedang di Proses
@@ -117,7 +117,7 @@
                                     Belum ada tanggapan
                                 @else
                                     @foreach ($tangap as $t)
-                                        @if ($t->petugas_id === 0)
+                                        @if ($t->petugas_id == 0)
                                             <div class="flex justify-start mb-4" style="max-width:50%">
                                                 <div class="bg-gray-100 text-black px-4 py-2 rounded-lg ">
                                                     <div class="mb-2">{{ $t->tanggapan }}</div>

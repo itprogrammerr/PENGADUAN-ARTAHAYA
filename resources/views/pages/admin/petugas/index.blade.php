@@ -80,7 +80,7 @@
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{-- {{ $petugas->roles }} --}}
-                                        @if ($petugas->roles===0)
+                                        @if ($petugas->roles==0)
                                             Administrator
                                         @else
                                             Petugas
@@ -141,7 +141,7 @@
     <script>
         function togglePasswordVisibility(inputId) {
             const passwordInput = document.getElementById(inputId);
-            if (passwordInput.type === "password") {
+            if (passwordInput.type == "password") {
                 passwordInput.type = "text";
             } else {
                 passwordInput.type = "password";

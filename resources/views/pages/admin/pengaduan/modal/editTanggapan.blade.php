@@ -60,17 +60,17 @@
                             <select
                                 class="block w-full text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                 name="status">
-                                @if ($t->status === 0)
+                                @if ($t->status == 0)
                                     <option value="0" selected>Belum di Proses</option>
                                     <option value="1">Sedang di Proses</option>
                                     <option value="2">Selesai</option>
                                     <option value="-"></option>
-                                @elseif($t->status === 1)
+                                @elseif($t->status == 1)
                                     <option value="0">Belum di Proses</option>
                                     <option value="1" selected>Sedang di Proses</option>
                                     <option value="2">Selesai</option>
                                     <option value="-"></option>
-                                @elseif($t->status === 2)
+                                @elseif($t->status == 2)
                                     <option value="0">Belum di Proses</option>
                                     <option value="1">Sedang di Proses</option>
                                     <option value="2" selected>Selesai</option>
