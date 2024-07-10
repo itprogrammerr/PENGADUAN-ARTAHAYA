@@ -78,7 +78,11 @@
                     <br> --}}
                     {{ $pengaduan->description }}
                 </td>
-                <td>{{ $pengaduan->status }}</td>
+                @if ($pengaduan->status == 0)
+                    <td>Belum diproses </td>
+                @else
+                    <td>Sudah diproses </td>
+                @endif
             </tr>
         </tbody>
     </table>
