@@ -94,18 +94,44 @@
                                             </span>
                                         </td>
                                     @elseif ($item->status == 1)
-                                        <td class="px-4 py-3 text-xs">
+                                        {{-- <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600">
                                                 Sedang di Proses
                                             </span>
+                                        </td> --}}
+
+                                        <td class="px-4 py-3 text-xs">
+                                            <form
+                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $pengaduan->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-md dark:text-white dark:bg-orange-600 hover:bg-orange-200 dark:hover:bg-orange-700 transition-colors">
+                                                    Sedang di Proses
+                                                </button>
+                                            </form>
                                         </td>
                                     @else
-                                        <td class="px-4 py-3 text-xs">
+                                        {{-- <td class="px-4 py-3 text-xs">
                                             <span
                                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100">
                                                 Selesai
                                             </span>
+                                        </td> --}}
+
+                                        <td class="px-4 py-3 text-xs">
+                                            <form
+                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $pengaduan->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-md dark:bg-green-700 dark:text-green-100 transition-colors">
+                                                    Selesai
+                                                </button>
+                                            </form>
                                         </td>
                                     @endif
 

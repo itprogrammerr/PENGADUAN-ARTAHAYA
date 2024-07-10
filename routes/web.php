@@ -23,6 +23,7 @@ Route::prefix('admin')
         Route::get('laporan', 'AdminController@laporan');
         Route::get('laporan/cetak', 'AdminController@cetak');
         Route::get('pengaduan/cetak/{id}', 'AdminController@pdf');
+        Route::patch('/pengaduans/{id}/change-status', 'PengaduanController@changePengaduanStatus')->name('pengaduans.changePengaduanStatus');
     });
 
 

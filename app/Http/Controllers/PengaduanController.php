@@ -10,6 +10,19 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PengaduanController extends Controller
 {
+
+    public function changePengaduanStatus($id){
+        try {
+            $pengaduan = Pengaduan::find($id);
+            $pengaduan->status = $pengaduan->status == 0 ? 1 : 0;
+            $pengaduan->save();
+
+            Alert::success('Success', 'Pengaduan status telah di ubah');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'System error, kontak administrator untuk menyelesaikannya');
+        }
+    }
     public function index(Request $request)
     {
         $query = Pengaduan::query();
