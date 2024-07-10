@@ -96,7 +96,7 @@
 
                                         <td class="px-4 py-3 text-xs">
                                             <form
-                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $pengaduan->id]) }}"
+                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $item->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PATCH')
@@ -125,7 +125,7 @@
 
                                         <td class="px-4 py-3 text-xs">
                                             <form
-                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $pengaduan->id]) }}"
+                                                action="{{ route('pengaduans.changePengaduanStatus', ['id' => $item->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PATCH')
