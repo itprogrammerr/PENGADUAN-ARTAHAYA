@@ -16,7 +16,7 @@ class PetugasController extends Controller
 {
     public function index(Request $request)
     {
-        if (Auth::user()->roles !== 0) {
+        if (Auth::user()->roles != 0) {
             Alert::warning('Peringatan', 'Maaf Anda tidak punya akses');
             return back();
         }
